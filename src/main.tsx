@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { RouterProvider } from "react-router-dom";
+import { routes } from "./routes/routes.tsx";
 
 const client = new ApolloClient({
   uri: import.meta.env.VITE_GRAPHQL_URL,
@@ -13,7 +14,7 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <RouterProvider router={routes} />
     </ApolloProvider>
   </React.StrictMode>
 );
