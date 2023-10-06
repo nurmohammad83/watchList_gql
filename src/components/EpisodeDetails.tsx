@@ -1,34 +1,32 @@
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { Card } from "antd";
+import { FileAddOutlined } from "@ant-design/icons";
+import { Button, Card } from "antd";
 import { Episode } from "../graphql/__generated__/graphql";
+import { useAppDispatch } from "../redux/hooks";
+import { addToWatchList } from "../redux/slices/watchListSlice";
 
 const { Meta } = Card;
 
 const EpisodeDetails = ({ episode }: { episode: Episode | null }) => {
+
+  const dispatch = useAppDispatch()
+  const handelAdded =(data:Episode)=>{
+    dispatch(addToWatchList(data))
+  }
+
   return (
-    <Card
-      cover={
-        <img
-          className="h-full w-full"
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
-      }
-      actions={[
-        <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
-        <EllipsisOutlined key="ellipsis" />,
-      ]}
-    >
+    <Card hoverable className="cursor-default">
       <Meta
-        className="text-center"
+        className="font-semibold  text-center"
         title={episode?.name}
-        description={episode?.episode}
+        description={`Ep: ${episode?.episode}`}
       />
+      {/* Button */}
+      <div className="mt-5 flex flex-wrap gap-2">
+        <Button onClick={()=>handelAdded(episode!)} className="font-poppins" size="middle" type="default" block>
+          <FileAddOutlined />
+          Add To WatchList
+        </Button>
+      </div>
     </Card>
   );
 };

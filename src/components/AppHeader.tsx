@@ -1,26 +1,37 @@
 import { FileAddOutlined } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Badge, Layout, Menu } from "antd";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../redux/hooks";
 const { Header } = Layout;
 
 const AppHeader = () => {
+
+  const {watchLists} = useAppSelector(state=>state.episodes)
+  
+
   return (
-    <Header className="flex justify-between">
+    <Header className="flex sticky top-0 w-full z-50 justify-between">
       <div className="flex items-center justify-center">
-        <a
+        <Link
           className="bg-gray-500 font-bold text-xl font-poppins text-white px-2 py-1 rounded-sm"
-          href="/"
+          to="/"
         >
           RICK & MORTY
-        </a>
+        </Link>
       </div>
       <Menu theme="dark" mode="vertical" className="">
-        <a
-          href="/episodes"
-          className="text-white font-medium text-sm font-poppins hover:text-cyan-500"
+        <Link
+          to="/watch-list"
+          className=""
         >
-          <FileAddOutlined className="mr-2 font-bold" />
-          WishList
-        </a>
+           <Badge count={watchLists.length}>
+           <span className="text-white font-medium text-sm font-poppins hover:text-cyan-500">
+            WishList
+           <FileAddOutlined className="ml-2 text-lg font-bold" />
+           </span>
+         </Badge>
+          
+        </Link>
       </Menu>
     </Header>
   );

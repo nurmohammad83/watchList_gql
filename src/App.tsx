@@ -1,11 +1,11 @@
+import { Outlet } from "react-router-dom";
 import AppHeader from "./components/AppHeader";
-import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      <AppHeader />
-      <Home />
+    <AppHeader />
+      <Outlet />
     </>
   );
 }

@@ -22,16 +22,16 @@ const Episodes = () => {
 
   if (!loading && !error && episodes?.length && episodes?.length > 0) {
     content = episodes?.map((episode: Episode | null) => (
-      <Col span={6}>
+      <Col xs={24} sm={24} md={12} lg={12} xl={8}>
         <EpisodeDetails key={episode?.id} episode={episode} />
       </Col>
     ));
   }
 
   return (
-    <div className="px-6 sm:px-16">
+    <div className="px-6 py-5 sm:px-16">
       <h1 className="font-poppins text-center py-6 sm:py-10">All Episodes</h1>
-      <Row justify={'center'} align={'middle'} gutter={[16, 16]}>
+      <Row justify={"center"} align={"middle"} gutter={[16, 16]}>
         {content}
       </Row>
     </div>
