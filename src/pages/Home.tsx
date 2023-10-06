@@ -1,6 +1,10 @@
+import Episodes from "../components/Episodes";
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <Episodes />
+    </div>
   )
 }
 export default Home;

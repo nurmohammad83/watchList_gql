@@ -5,20 +5,20 @@ const { Header } = Layout;
 const AppHeader = () => {
   return (
     <Header className="flex justify-between">
-      <div>
+      <div className="flex items-center justify-center">
         <a
           className="bg-gray-500 font-bold text-xl font-poppins text-white px-2 py-1 rounded-sm"
           href="/"
         >
-          RICK MORTY
+          RICK & MORTY
         </a>
       </div>
       <Menu theme="dark" mode="vertical" className="">
         <a
-          href="/allNews"
-          className="text-white font-medium text-sm font-poppins hover:text-blue-500"
+          href="/episodes"
+          className="text-white font-medium text-sm font-poppins hover:text-cyan-500"
         >
-          <FileAddOutlined className="mr-2" />
+          <FileAddOutlined className="mr-2 font-bold" />
           WishList
         </a>
       </Menu>
