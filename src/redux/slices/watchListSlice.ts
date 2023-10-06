@@ -4,12 +4,14 @@ import { Episode } from "../../graphql/__generated__/graphql";
 
 export interface EpisodesState {
   watchLists: Episode[];
-  alart?: string;
+  watchingList: Episode[];
+  watched: Episode[];
 }
 
 const initialState: EpisodesState = {
   watchLists: [],
-  alart: "",
+  watchingList: [],
+  watched: [],
 };
 
 export const watchListSlice = createSlice({
@@ -22,14 +24,71 @@ export const watchListSlice = createSlice({
       );
       if (isExist) {
         state.watchLists;
-        state.alart = "Already Add to Watch list";
       } else {
         state.watchLists.push(action.payload);
       }
     },
+
+    removeFromWatchList: (state, action: PayloadAction<string>) => {
+      const filterWatchList = state.watchLists.filter(
+        (item) => item.id !== action.payload
+      );
+      state.watchLists = filterWatchList;
+    },
+
+    addToWatchingList: (state, action: PayloadAction<Episode>) => {
+      const isExist = state.watchingList.find(
+        (item) => item.id === action.payload.id
+      );
+      const watchList = state.watchLists.filter(
+        (item) => item.id !== action.payload.id
+      );
+      if (isExist) {
+        state.watchingList;
+      } else {
+        state.watchingList.push(action.payload);
+        state.watchLists = watchList;
+      }
+    },
+
+    removeFromWatchingList: (state, action: PayloadAction<string>) => {
+      const filterWatchingList = state.watchingList.filter(
+        (item) => item.id !== action.payload
+      );
+      state.watchingList = filterWatchingList;
+    },
+
+    finishedWatch: (state, action: PayloadAction<Episode>) => {
+      const isExist = state.watched.find(
+        (item) => item.id === action.payload.id
+      );
+      const watchingList = state.watchingList.filter(
+        (item) => item.id !== action.payload.id
+      );
+      if (isExist) {
+        state.watched;
+      } else {
+        state.watched.push(action.payload);
+        state.watchingList = watchingList;
+      }
+    },
+
+    removeFromWatchedList: (state, action: PayloadAction<string>) => {
+      const filterWatchedList = state.watched.filter(
+        (item) => item.id !== action.payload
+      );
+      state.watched = filterWatchedList;
+    },
   },
 });
 
-export const { addToWatchList } = watchListSlice.actions;
+export const {
+  addToWatchList,
+  removeFromWatchList,
+  addToWatchingList,
+  finishedWatch,
+  removeFromWatchedList,
+  removeFromWatchingList,
+} = watchListSlice.actions;
 
 export default watchListSlice.reducer;

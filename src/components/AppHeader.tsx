@@ -26,7 +26,7 @@ const AppHeader = () => {
         >
            <Badge count={watchLists.length}>
            <span className="text-white font-medium text-sm font-poppins hover:text-cyan-500">
-            WishList
+            WatchList
            <FileAddOutlined className="ml-2 text-lg font-bold" />
            </span>
          </Badge>
