@@ -1,11 +1,20 @@
 import { FileAddOutlined } from "@ant-design/icons";
-import { Badge, Layout, Menu } from "antd";
+import { Badge, Button, Drawer, Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
+import { useState } from "react";
 const { Header } = Layout;
 
 const AppHeader = () => {
+  const [open, setOpen] = useState(false);
 
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
   const {watchLists} = useAppSelector(state=>state.episodes)
   
 
@@ -20,8 +29,9 @@ const AppHeader = () => {
         </Link>
       </div>
       <Menu theme="dark" mode="vertical" className="">
-        <Link
-          to="/watch-list"
+        <Button
+         onClick={showDrawer}
+         type="text"
           className=""
         >
            <Badge count={watchLists.length}>
@@ -30,8 +40,12 @@ const AppHeader = () => {
            <FileAddOutlined className="ml-2 text-lg font-bold" />
            </span>
          </Badge>
-          
-        </Link>
+        </Button>
+        <Drawer  title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+          <Link to={'/watchlist'}><Button block>WatchList</Button></Link>
+        <Button block className="my-2">Watching List</Button>
+        <Button block>Watched List</Button>
+      </Drawer>
       </Menu>
     </Header>
   );
