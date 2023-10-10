@@ -15,8 +15,9 @@ const AppHeader = () => {
   const onClose = () => {
     setOpen(false);
   };
-  const {watchLists,watchingList,watched} = useAppSelector(state=>state.episodes)
-  
+  const { watchLists, watchingList, watched } = useAppSelector(
+    (state) => state.episodes
+  );
 
   return (
     <Header className="flex sticky top-0 w-full z-50 justify-between">
@@ -29,22 +30,33 @@ const AppHeader = () => {
         </Link>
       </div>
       <Menu theme="dark" mode="vertical" className="">
-        <Button
-         onClick={showDrawer}
-         type="text"
-        >
-           <Badge count={watchLists.length}>
-           <span className="text-white font-medium text-sm font-poppins hover:text-cyan-500">
-            WatchList
-           <FileAddOutlined className="ml-2 text-lg font-bold" />
-           </span>
-         </Badge>
+        <Button onClick={showDrawer} type="text">
+          <Badge count={watchLists.length}>
+            <span className="text-white font-medium text-sm font-poppins hover:text-cyan-500">
+              WatchList
+              <FileAddOutlined className="ml-2 text-lg font-bold" />
+            </span>
+          </Badge>
         </Button>
-        <Drawer  title="Basic Drawer" placement="right" onClose={onClose} open={open}>
-          <Link to='/watchlist'><Button block>WatchList ({watchLists.length})</Button></Link>
-       <Link to='/watching-list'> <Button block className="my-2">Watching List  ({watchingList.length})</Button></Link>
-        <Link to="watched-list"><Button block>Watched List  ({watched.length})</Button></Link>
-      </Drawer>
+        <Drawer
+          title="My Watchlist"
+          placement="right"
+          onClose={onClose}
+          open={open}
+        >
+          <Link to="/watchlist">
+            <Button block>WatchList ({watchLists.length})</Button>
+          </Link>
+          <Link to="/watching-list">
+            {" "}
+            <Button block className="my-2">
+              Watching List ({watchingList.length})
+            </Button>
+          </Link>
+          <Link to="watched-list">
+            <Button block>Watched List ({watched.length})</Button>
+          </Link>
+        </Drawer>
       </Menu>
     </Header>
   );

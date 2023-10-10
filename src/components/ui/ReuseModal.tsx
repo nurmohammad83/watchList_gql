@@ -19,7 +19,7 @@ const ReuseModal = ({
         onOk={hideModal}
         onCancel={hideModal}
         width={1000}
-      ><h2 className="text-center text-3xl py-24">Thank You So Much For Watching</h2></Modal>
+      ><h2 className="text-center font-poppins text-xl py-24">Thanks For Watching</h2></Modal>
     </>
   );
 };
