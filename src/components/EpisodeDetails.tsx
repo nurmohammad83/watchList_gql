@@ -20,7 +20,6 @@ const EpisodeDetails = ({ episode }: { episode: Episode | null }) => {
   const handelAdded = (data: Episode) => {
     dispatch(addToWatchList(data));
   };
-
   return (
     <Card hoverable className="cursor-default">
       <Meta
