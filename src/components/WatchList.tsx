@@ -1,7 +1,7 @@
 import { Button, Card } from "antd";
 import { Episode } from "../graphql/__generated__/graphql";
 import {
-  SettingOutlined,DeleteOutlined
+  EyeOutlined,DeleteOutlined
 } from "@ant-design/icons";
 import { useAppDispatch } from "../redux/hooks";
 import { addToWatchingList, removeFromWatchList } from "../redux/slices/watchListSlice";
@@ -18,7 +18,7 @@ const WatchList = ({ episode }: { episode: Episode | null }) => {
         className="cursor-default"
         actions={[
           <Button onClick={()=>dispatch(addToWatchingList(episode as Episode))} className="border-none shadow-none" block>
-            <SettingOutlined key="setting" />
+            <EyeOutlined />
             Watching
           </Button>,
 

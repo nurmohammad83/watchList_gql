@@ -15,7 +15,7 @@ const AppHeader = () => {
   const onClose = () => {
     setOpen(false);
   };
-  const {watchLists} = useAppSelector(state=>state.episodes)
+  const {watchLists,watchingList,watched} = useAppSelector(state=>state.episodes)
   
 
   return (
@@ -42,9 +42,9 @@ const AppHeader = () => {
          </Badge>
         </Button>
         <Drawer  title="Basic Drawer" placement="right" onClose={onClose} open={open}>
-          <Link to={'/watchlist'}><Button block>WatchList</Button></Link>
-        <Button block className="my-2">Watching List</Button>
-        <Button block>Watched List</Button>
+          <Link to='/watchlist'><Button block>WatchList ({watchLists.length})</Button></Link>
+       <Link to='/watching-list'> <Button block className="my-2">Watching List  ({watchingList.length})</Button></Link>
+        <Link to="watched-list"><Button block>Watched List  ({watched.length})</Button></Link>
       </Drawer>
       </Menu>
     </Header>
