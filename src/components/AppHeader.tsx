@@ -22,7 +22,7 @@ const AppHeader = () => {
     <Header className="flex sticky top-0 w-full z-50 justify-between">
       <div className="flex items-center justify-center">
         <Link
-          className="bg-gray-500 font-bold text-xl font-poppins text-white px-2 py-1 rounded-sm"
+          className="bg-gray-500 font-bold text-base md:text-xl font-poppins text-white px-2 py-1 rounded-sm"
           to="/"
         >
           RICK & MORTY
@@ -32,7 +32,6 @@ const AppHeader = () => {
         <Button
          onClick={showDrawer}
          type="text"
-          className=""
         >
            <Badge count={watchLists.length}>
            <span className="text-white font-medium text-sm font-poppins hover:text-cyan-500">
